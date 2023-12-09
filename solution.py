@@ -1,0 +1,19 @@
+from itertools import pairwise
+
+
+def seq(ints):
+    if all(ints == 0 for ints in ints):
+        return 0
+    diffs = [b - a for a, b in pairwise(ints)]
+    return ints[-1] + seq(diffs)
+
+
+def p1(f):
+    return sum(seq([int(x) for x in line.split()]) for line in f)
+
+
+def p2(f):
+    return sum(seq([int(x) for x in line.split()[::-1]]) for line in f)
+
+print("Part 1: ", p1(open("9/input.txt")))
+print("Part 2: ", p2(open("9/input.txt")))
